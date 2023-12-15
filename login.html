@@ -32,7 +32,7 @@
     <div class="hero_area">
       <header class="header_section">
         <div class="header_bottom">
-          <div class="container-fluid" style="background-color: #272d31;">
+          <div class="container-fluid" style="background-color: #1C1C1C;">
             <nav class="navbar navbar-expand-lg custom_nav-container">
               <a class="navbar-brand" href="index.html">
                 <span>
@@ -56,17 +56,17 @@
                   <li class="nav-item">
                     <a class="nav-link" href="plans.html"> Planes </a>
                   </li>
-                  <li class="nav-item active">
+                  <li class="nav-item">
                     <a class="nav-link" href="contact.html"> Contacto </a>
                   </li>
                 </ul>
                 <!-- Right -->
                 <ul class="navbar-nav nav-flex-icons ml-5">
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Iniciar Sesión</a>
+                  <li class="nav-item active">
+                    <a class="nav-link" href="login.html">Iniciar Sesión</a>
                   </li>
-                  <li class="nav-item" style="background-color: #FFE000;">
-                    <a class="nav-link text-dark" href="#">Registro</a>
+                  <li class="nav-item" style="background-color: #FFE000; color: black">
+                    <a class="nav-link" href="register.html">Registro</a>
                   </li>
                 </ul>
               </div>
@@ -77,32 +77,41 @@
       <!-- end header section -->
   </div>
 
-  <!-- contact section -->
-  <section class="contact_section layout_padding">
-    <div class="contact_bg_box">
-      <div class="img-box">
-        <img src="images/contacto.jpg" alt="">
-      </div>
-    </div>
-    <div class="container">
-      <div class="heading_container heading_center">
-        <h2>
-          Iniciar Sesión
-        </h2>
-      </div>
-      <div class="row">
-        <div class="col-md-6 offset-md-3">
-          <form action="#" method="post" class="contact_form">
-            <div class="form-group">
-              <input type="email" class="form-control" name="email" placeholder="Correo Electrónico" required>
-            </div>
-            <div class="form-group">
-              <input type="password" class="form-control" name="password" placeholder="Contraseña" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-          </form>
+  <!-- login section -->
+  <section class="team_section layout_padding mb-0">
+    <div class="container" id="services">
+        <div class="heading_container heading_center mb-5">
+          <h2 class="mt-n3 mb-3">
+            Iniciar Sesión
+          </h2>
+          <h6>
+            ¿No tienes una cuenta?
+            <a href="register.html">
+              Regístrate
+            </a>
+          </h6>
         </div>
-      </div>
+        <div class="row">
+          <div class="col-lg-4"></div>
+          <div class="col-lg-4">
+            <form action="#" method="post" class="contact_form">
+              <div class="form-group">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                &nbsp;&nbsp;Correo Electrónico:
+                <input type="email" class="form-control mt-2" name="email" placeholder="Correo Electrónico" required>
+              </div>
+              <div class="form-group">
+                <i class="fa fa-lock" aria-hidden="true"></i>
+                &nbsp;&nbsp;Contraseña:
+                <input type="password" class="form-control mt-2" name="password" placeholder="Contraseña" required>
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-dark pl-4 pr-4 pt-2 pb-2">Iniciar Sesión</button>
+              </div>
+              
+            </form>
+          </div>
+        </div>
     </div>
   </section>
   <!-- end contact section -->
