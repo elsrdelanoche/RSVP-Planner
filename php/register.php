@@ -1,3 +1,20 @@
+<?php
+   include("db.php");
+   if (isset($_POST['form'])) {
+        $nombre = $_POST['nombre'];
+        $apaterno = $_POST['apaterno'];
+        $amaterno = $_POST['amaterno'];
+        $email = $_POST['email'];
+        $pass = $_POST['password'];
+  
+        $sql = "INSERT INTO anfitrion VALUES (NULL, '$nombre', '$apaterno', '$amaterno', '$email', '$pass')";
+        $res = mysqli_query($conexion, $sql);
+        if (!$res) {
+            die("Error en query");
+            header("Location: ../register.html");
+        }
+    }
+?>
 <!DOCTYPE html>
 <html>
 
@@ -11,20 +28,20 @@
   <meta name="keywords" content="" />
   <meta name="description" content="" />
   <meta name="author" content="" />
-  <link rel="shortcut icon" href="images/logo_blanco.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../images/logo_blanco.png" type="image/x-icon">
 
-  <title>Iniciar sesion</title>
+  <title>Registrarse</title>
 
   <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
 
   <!-- fonts style -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,600,700&display=swap" rel="stylesheet" />
 
   <!-- Custom styles for this template -->
-  <link href="css/style.css" rel="stylesheet" />
+  <link href="../css/style.css" rel="stylesheet" />
   <!-- responsive style -->
-  <link href="css/responsive.css" rel="stylesheet" />
+  <link href="../css/responsive.css" rel="stylesheet" />
 </head>
 
 <body class="sub_page">
@@ -34,10 +51,9 @@
         <div class="header_bottom">
           <div class="container-fluid" style="background-color: #1C1C1C;">
             <nav class="navbar navbar-expand-lg custom_nav-container">
-              <a class="navbar-brand" href="index.html">
+              <a class="navbar-brand" href="../index.html">
                 <span>
-                  <img src="images/logo_blanco.png" style="height: 37px;"> RSVP Planner
-                </span>
+                  <img src="../images/logo_blanco.png" style="height: 37px;"> RSVP Planner
                 </span>
               </a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,25 +64,25 @@
                 <!-- Left -->
                 <ul class="navbar-nav mr-5">
                   <li class="nav-item">
-                    <a class="nav-link" href="index.html"> Inicio <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="../index.html"> Inicio <span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="service.html"> Servicios</a>
+                    <a class="nav-link" href="../service.html"> Servicios</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="plans.html"> Planes </a>
+                    <a class="nav-link" href="../plans.html"> Planes </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="contact.html"> Contacto </a>
+                    <a class="nav-link" href="../contact.html"> Contacto </a>
                   </li>
                 </ul>
                 <!-- Right -->
                 <ul class="navbar-nav nav-flex-icons ml-5">
-                  <li class="nav-item active">
-                    <a class="nav-link" href="login.html">Iniciar Sesión</a>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../login.html">Iniciar Sesión</a>
                   </li>
-                  <li class="nav-item" style="background-color: #FFE000; color: black">
-                    <a class="nav-link" href="register.html">Registro</a>
+                  <li class="nav-item active" style="background-color: #FFE000; color: black">
+                    <a class="nav-link" href="../register.html">Registro</a>
                   </li>
                 </ul>
               </div>
@@ -78,49 +94,20 @@
   </div>
 
   <!-- login section -->
-  <section class="team_section layout_padding mb-0">
-    <div class="container mb-0" id="services">
+  <section class="team_section layout_padding mb-3">
+    <div class="container" id="services">
         <div class="heading_container heading_center mb-4">
-          <h2 class="mt-n2 mb-3">
-            Iniciar Sesión
+          <h2 class="mt-3 mb-5">
+            Bienvenido <?php echo $_POST['nombre'] ?>
           </h2>
           <h6>
-            ¿No tienes una cuenta?
-            <a href="register.html">
-              Regístrate
-            </a>
+            Tus datos han sido registrados exitosamente.
           </h6>
         </div>
-        <div class="row">
-          <div class="col-lg-4"></div>
-          <div class="col-lg-4">
-            <form action="php/login.php" method="post" class="contact_form">
-              <div class="form-group">
-                <i class="fa fa-user" aria-hidden="true"></i>
-                &nbsp;&nbsp;Usuario:
-                <select class="custom-select mr-sm-2" name="tipo_user" id="tipo_user" required>
-                  <option value="Seleccionar">Seleccionar</option>
-                  <option value="Anfitrion">Anfitrión</option>
-                  <option value="Invitado">Invitado</option>
-                  <option value="Administrador">Administrador</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <i class="fa fa-envelope" aria-hidden="true"></i>
-                &nbsp;&nbsp;Correo Electrónico:
-                <input type="email" id="email" class="form-control mt-2" name="email" placeholder="Correo Electrónico" required>
-              </div>
-              <div class="form-group">
-                <i class="fa fa-lock" aria-hidden="true"></i>
-                &nbsp;&nbsp;Contraseña:
-                <input type="password" id="password" class="form-control mt-2" name="password" placeholder="Contraseña" required>
-              </div>
-              <div class="text-center">
-                <button type="submit" class="btn btn-dark pl-4 pr-4 pt-2 pb-2 mt-4" id="iniciar" name="iniciar">Iniciar Sesión</button>
-              </div>
-              
-            </form>
-          </div>
+        <div class="text-center">
+          <a class="btn btn-dark mt-5 mb-3 pl-5 pr-5" href="../login.html" target="_self" role="button">Iniciar Sesión
+          <i class="fa fa-chevron-right ml-2"></i>
+          </a>
         </div>
     </div>
   </section>
@@ -132,7 +119,7 @@
       <div class="row">
         <div class="col-md-3">
           <div class="info_logo">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="../index.html">
               <span>
                 RSVP Planner
               </span>
@@ -221,9 +208,9 @@
   </footer>
   <!-- footer section -->
 
-  <script src="js/jquery-3.4.1.min.js"></script>
-  <script src="js/bootstrap.js"></script>
-  <script src="js/custom.js"></script>
+  <script src="../js/jquery-3.4.1.min.js"></script>
+  <script src="../js/bootstrap.js"></script>
+  <script src="../js/custom.js"></script>
 </body>
 
 </html>
