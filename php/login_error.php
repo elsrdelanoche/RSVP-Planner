@@ -145,7 +145,7 @@
             <a href="" class="">
               <i class="fa fa-envelope" aria-hidden="true"></i>
               <span>
-                rsvp@planner.com
+              rsvp.planner23@gmail.com
               </span>
             </a>
           </div>
@@ -157,9 +157,14 @@
             </h5>
             <form action="#">
               <input type="email" placeholder="Ingresa tu email">
-              <button>
+              <button id="sub">
                 Subscribe
               </button>
+              <script>
+                document.getElementById("sub").addEventListener("click", function() {
+                    alert("Gracias por suscribirte a nuestro Newsletter. Recibirás las últimas novedades y ofertas exclusivas de RSVP Planner.");
+                  });
+              </script>
             </form>
             <div class="social_box">
               <a href="https://www.facebook.com/">

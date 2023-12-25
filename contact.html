@@ -13,7 +13,7 @@
   <meta name="author" content="" />
   <link rel="shortcut icon" href="images/logo_blanco.png" type="image/x-icon">
 
-  <title>Guarder</title>
+  <title>Contacto</title>
 
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
@@ -97,7 +97,7 @@
             <h5>¿Cómo puedes contactarnos?</h5>
             <p>
               <i class="fa fa-envelope" aria-hidden="true"></i> Correo Electrónico<br>
-              Para consultas generales, envíanos un email a <span class="font-weight-bold">rsvp@planner.com</span>
+              Para consultas generales, envíanos un email a <span class="font-weight-bold">rsvp.planner23@gmail.com</span>
             </p>
             <p>
               <i class="fa fa-phone" aria-hidden="true"></i> Teléfono<br>
@@ -106,30 +106,35 @@
             <p>
               <i class="fa fa-paper-plane" aria-hidden="true"></i> Formulario de Contacto<br>
               Puedes usar el formulario de contacto a continuación para enviarnos tus 
-              comentarios o preguntas. Solo completa los campos requeridos y haz clic en enviar.
-              <br><br>Nos pondremos en contacto contigo lo antes posible.
+              comentarios o preguntas. <!--Solo completa los campos requeridos y haz clic en enviar.
+              <br><br>Nos pondremos en contacto contigo lo antes posible.-->
             </p>
           </div>
           <div class="col-lg-7 col-sm-12 mx-auto">
-            <form action="#">
+            <form action="php/contact.php"  method="post">
               <div class="contact_form-container">
                 <div>
                   <div>
-                    <input type="text" placeholder="Escribe tu nombre" />
+                    <input type="text" name="nombre" id="nombre" placeholder="Escribe tu nombre" />
                   </div>
                   <div>
-                    <input type="email" placeholder="Escribe tu e-mail " />
+                    <input type="email" name="email" id="email" placeholder="Escribe tu e-mail " />
                   </div>
                   <div>
-                    <input type="text" placeholder="Escribe tu teléfono" />
+                    <input type="text" name="tel" id="asunto" placeholder="Escribe el asunto" />
                   </div>
                   <div class="">
-                    <input type="text" placeholder="Escribe tu mensaje" class="message_input" />
+                    <input type="text" name="mensaje" id="mensaje" placeholder="Escribe tu mensaje" class="message_input" />
                   </div>
                   <div class="btn-box ">
-                    <button type="submit">
+                    <button type="submit" name="enviar" id="enviar">
                       ENVIAR
                     </button>
+                    <script>
+                      document.getElementById("enviar").addEventListener("click", function() {
+                        alert("Tu mensaje ha sido enviado. Gracias por comunicarte con nosotros.");
+                        });
+                    </script>
                   </div>
                 </div>
               </div>
@@ -140,8 +145,7 @@
     </div>
   </section>
 
-  <!-- end contact section -
-    ->
+  <!-- end contact section -->
 
   <!-- info section -->
   <section class="info_section">
@@ -191,7 +195,7 @@
             <a href="" class="">
               <i class="fa fa-envelope" aria-hidden="true"></i>
               <span>
-                rsvp@planner.com
+                rsvp.planner23@gmail.com
               </span>
             </a>
           </div>
@@ -203,9 +207,14 @@
             </h5>
             <form action="#">
               <input type="email" placeholder="Ingresa tu email">
-              <button>
+              <button id="sub">
                 Subscribe
               </button>
+              <script>
+                document.getElementById("sub").addEventListener("click", function() {
+                    alert("Gracias por suscribirte a nuestro Newsletter. Recibirás las últimas novedades y ofertas exclusivas de RSVP Planner.");
+                  });
+              </script>
             </form>
             <div class="social_box">
               <a href="https://www.facebook.com/">

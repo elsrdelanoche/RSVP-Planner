@@ -1,19 +1,47 @@
 <?php
-   include("db.php");
-   if (isset($_POST['form'])) {
-        $nombre = $_POST['nombre'];
-        $apaterno = $_POST['apaterno'];
-        $amaterno = $_POST['amaterno'];
-        $email = $_POST['email'];
-        $pass = $_POST['password'];
+  include("db.php");
+  if (isset($_POST['form'])) {
+    $nombre = $_POST['nombre'];
+    $apaterno = $_POST['apaterno'];
+    $amaterno = $_POST['amaterno'];
+    $email = $_POST['email'];
+    $pass = $_POST['password'];
   
-        $sql = "INSERT INTO anfitrion VALUES (NULL, '$nombre', '$apaterno', '$amaterno', '$email', '$pass')";
-        $res = mysqli_query($conexion, $sql);
-        if (!$res) {
-            die("Error en query");
-            header("Location: ../register.html");
-        }
+    $sql = "INSERT INTO anfitrion VALUES (NULL, '$nombre', '$apaterno', '$amaterno', '$email', '$pass')";
+    $res = mysqli_query($conexion, $sql);
+    if (!$res) {
+        die("Error en query");
+        header("Location: ../register.html");
     }
+
+    $destino = $email;
+    $asunto = "Bienvenido a RSVP Planner";
+    $correo = '
+    <html>
+      <head><title>Bienvenido</title></head>
+      <body>
+        <div style="height: 10%; background-color: #1C1C1C; margin-bottom: 5%;">
+          <p style="padding: 3%; color: #FFFFFF; font-size: 23px; font-family: \'Poppins\', sans-serif; font-weight: bold;">RSVP Planner</p>
+        </div>
+        <div style="padding-left: 7%; padding-right: 7%; color: black; font-size: 17px; font-family: \'Poppins\', sans-serif;">
+          <p style="text-align: center; font-size: 22px; margin-bottom: 5%;">Hola '.$nombre.'<br>¡Bienvenido a RSVP Planner!</p>
+          <p>Con nosotros, la experiencia de organizar tus eventos sociales será única. Gestionar tus invitaciones y confirmaciones de asistencia nunca ha sido tan fácil. </p>
+          <p>Se han registrado los siguientes datos:</p>
+          <div style ="margin-left: 5%">
+            <p>Nombre: '.$nombre.' '.$apaterno.' '.$amaterno.'</p>
+            <p>Correo electrónico: '.$email.'</p>
+            <p>Contraseña: '.$pass.'</p>
+          </div>
+          <p>Estamos aquí para ayudarte a hacer de tu próximo evento un éxito rotundo. ¡Gracias por elegir RSVP Planner!</p><br>
+          <p>Equipo de RSVP Planner</p>
+        </div>
+      </body>
+    </html>
+    ';
+        
+    require("ConfiguraMail.php");
+    enviaCorreo($destino, $asunto, $correo);
+  }
 ?>
 <!DOCTYPE html>
 <html>
@@ -161,7 +189,7 @@
             <a href="" class="">
               <i class="fa fa-envelope" aria-hidden="true"></i>
               <span>
-                rsvp@planner.com
+                rsvp.planner23@gmail.com
               </span>
             </a>
           </div>
@@ -173,9 +201,14 @@
             </h5>
             <form action="#">
               <input type="email" placeholder="Ingresa tu email">
-              <button>
+              <button id="sub">
                 Subscribe
               </button>
+              <script>
+                document.getElementById("sub").addEventListener("click", function() {
+                    alert("Gracias por suscribirte a nuestro Newsletter. Recibirás las últimas novedades y ofertas exclusivas de RSVP Planner.");
+                  });
+              </script>
             </form>
             <div class="social_box">
               <a href="https://www.facebook.com/">
