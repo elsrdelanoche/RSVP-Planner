@@ -1,15 +1,15 @@
 <?php
     include("db.php");
-    $folio = "";
+    $id_anfitrion = "";
     $nombre = "";
     $apaterno = "";
     $amaterno = "";
     $email = "";
     $pass = "";
 
-    if (isset($_GET['folio'])){
-        $folio = $_GET['folio'];
-        $query = "SELECT * FROM anfitrion WHERE folio = $folio";
+    if (isset($_GET['id_anfitrion'])){
+        $id_anfitrion = $_GET['id_anfitrion'];
+        $query = "SELECT * FROM anfitrion WHERE id_anfitrion = $id_anfitrion";
         $result = mysqli_query($conexion, $query);
         if (!$result) {
             die("Query fail");
@@ -26,14 +26,14 @@
     }
 
     if(isset($_POST['actualizar'])){
-        $folio = $_GET['folio'];
+        $id_anfitrion = $_GET['id_anfitrion'];
         $nombre = $_POST['nombre'];
         $apaterno = $_POST['apaterno'];
         $amaterno = $_POST['amaterno'];
         $email = $_POST['email'];
         $pass = $_POST['password'];
   
-        $query = "UPDATE anfitrion set folio = '$folio', nombre = '$nombre', apaterno = '$apaterno', amaterno = '$amaterno', email = '$email', password = '$pass' WHERE folio = '$folio'";
+        $query = "UPDATE anfitrion set id_anfitrion = '$id_anfitrion', nombre = '$nombre', apaterno = '$apaterno', amaterno = '$amaterno', email = '$email', password = '$pass' WHERE id_anfitrion = '$id_anfitrion'";
         $result = mysqli_query($conexion, $query);
         if (!$result) {
             die("Error en query");
@@ -127,7 +127,7 @@
         <div class="col-lg-4 col-md-3"></div>
         <div class="col-lg-4 col-md-6 mt-4 mb-5">
             <div class="card card-body mb-5">
-                <form action="editar_anf.php?folio=<?php echo $_GET['folio'];?>" method="post" class="registration_form">
+                <form action="editar_anf.php?id_anfitrion=<?php echo $_GET['id_anfitrion'];?>" method="post" class="registration_form">
                     <div class="form-group">
                         <input type="text" class="form-control" style="font-size: 14px;" name="nombre" id="nombre" value=<?php echo $nombre; ?> placeholder="Nombre" required>
                         <input type="text" class="form-control mt-3" style="font-size: 14px;" name="apaterno" id="apaterno" value=<?php echo $apaterno; ?> placeholder="Apellido Paterno" required>
