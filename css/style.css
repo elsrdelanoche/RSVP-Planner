@@ -613,23 +613,11 @@ a:focus {
   right: 0;
 }
 
-.container {
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 #areaDeEdicion {
   border: 1px solid black;
   width: 700px;
   height: 500px;
   position: relative;
-}
-
-.controls {
-  width: 100%;
-  text-align: center;
 }
 
 /* contact section */

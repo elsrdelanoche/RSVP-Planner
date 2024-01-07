@@ -4,7 +4,7 @@ $(document).ready(function() {
 
     // Función para añadir texto
     $('#addText').click(function() {
-        var texto = prompt("Ingrese su texto:");
+        var texto = prompt("Ingrese el texto:");
         if (texto) {
             var div = $('<div class="draggable" style="position: absolute;">' + texto + '</div>');
             $('#areaDeEdicion').append(div);
@@ -137,12 +137,12 @@ $(document).ready(function() {
                 format: [width, height]
             });
             pdf.addImage(imgData, 'PNG', 0, 0, width, height);
-            pdf.save("plano.pdf");
+            pdf.save("Invitacion.pdf");
 
             // Exportar como imagen (PNG)
             var imgURL = canvas.toDataURL('image/png');
             var dlLink = document.createElement('a');
-            dlLink.download = 'plano.png';
+            dlLink.download = 'Invitacion.png';
             dlLink.href = imgURL;
             dlLink.dataset.downloadurl = ['image/png', dlLink.download, dlLink.href].join(':');
             

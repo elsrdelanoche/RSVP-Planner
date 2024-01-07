@@ -55,7 +55,7 @@
             <nav class="navbar navbar-expand-lg custom_nav-container">
               <a class="navbar-brand" href="../index.html">
                 <span>
-                  <img src="../images/logo_blanco.png" style="height: 37px;"> RSVP Planner - Anfitrión
+                  <img src="../images/logo_blanco.png" style="height: 37px;"> RSVP Planner
                 </span>
               </a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,7 +65,11 @@
               <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
                 <!-- Left -->
                 <ul class="navbar-nav mr-5 mt-n3">
-                  
+                  <li class="nav-item">
+                  <a class="nav-link" href="index_anf.php" target="_self">Menú Anfitrión
+                    <span class="sr-only">(current)</span>
+                  </a>
+                  </li>
                 </ul>
                 <!-- Right -->
                 <ul class="navbar-nav nav-flex-icons m-1">
@@ -78,34 +82,44 @@
               </div>
             </nav>
           </div>
-
         </div>
       </header>
       <!-- end header section -->
       </div> 
     <main>
-    <form action="procesar_evento.php" method="post">
-    <div class="form-group">
-        <label for="nombreEvento">Nombre del Evento:</label>
-        <input type="text" class="form-control" id="nombreEvento" name="nombreEvento" required>
-    </div>
-    <div class="form-group">
-        <label for="fechaEvento">Fecha:</label>
-        <input type="date" class="form-control" id="fechaEvento" name="fechaEvento" required>
-    </div>
-    <div class="form-group">
-        <label for="ubicacionEvento">Ubicación:</label>
-        <input type="text" class="form-control" id="ubicacionEvento" name="ubicacionEvento" required>
-    </div>
-    <div class="form-group">
-        <label for="detallesEvento">Detalles:</label>
-        <textarea class="form-control" id="detallesEvento" name="detallesEvento" rows="3"></textarea>
-    </div>
-        <a href="/php/index_anf.php" class="btn btn-primary">Crear Evento </a>
-    </form>
+    <h5 class="text-center mt-5">Crear Evento Nuevo</h5>
+    <div class="row m-0">
+      <div class="col-lg-4 col-md-3"></div>
+        <div class="col-lg-4 col-md-6 mt-4 mb-5">
+          <div class="card card-body mb-5">
+            <form action="procesar_evento.php" method="post" class="registration_form">
+              <div class="form-group">
+                  <label for="nombreEvento">Nombre del Evento:</label>
+                  <input type="text" class="form-control" id="nombreEvento" name="nombreEvento" required>
+              </div>
+              <div class="form-group">
+                  <label for="fechaEvento">Fecha:</label>
+                  <input type="date" class="form-control" id="fechaEvento" name="fechaEvento" required>
+              </div>
+              <div class="form-group">
+                  <label for="ubicacionEvento">Ubicación:</label>
+                  <input type="text" class="form-control" id="ubicacionEvento" name="ubicacionEvento" required>
+              </div>
+              <div class="form-group">
+                  <label for="detallesEvento">Detalles:</label>
+                  <textarea class="form-control" id="detallesEvento" name="detallesEvento" rows="3"></textarea>
+              </div>
+              <div class="text-center">
+                <a href="/php/index_anf.php" class="btn btn-primary">Crear Evento </a>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-3"></div>
+      </div>
     </main>
 
-      <!-- footer section -->
+  <!-- footer section -->
   <footer class="container-fluid footer_section">
     <p>
       &copy; <span id="currentYear"></span> All Rights Reserved. Design by

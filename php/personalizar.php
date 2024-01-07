@@ -3,8 +3,12 @@
   session_start();
 	if(isset($_SESSION["email"])){
 		$nombre = $_SESSION["nombre"];
-	
-?>
+  }
+	else{
+        header("Location: ../login.html");
+	}
+  ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,7 +55,7 @@
             <nav class="navbar navbar-expand-lg custom_nav-container">
               <a class="navbar-brand" href="../index.html">
                 <span>
-                  <img src="../images/logo_blanco.png" style="height: 37px;"> RSVP Planner - Anfitrión
+                  <img src="../images/logo_blanco.png" style="height: 37px;"> RSVP Planner
                 </span>
               </a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,7 +65,11 @@
               <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
                 <!-- Left -->
                 <ul class="navbar-nav mr-5 mt-n3">
-                  
+                  <li class="nav-item">
+                  <a class="nav-link" href="index_anf.php" target="_self">Menú Anfitrión
+                    <span class="sr-only">(current)</span>
+                  </a>
+                  </li>
                 </ul>
                 <!-- Right -->
                 <ul class="navbar-nav nav-flex-icons m-1">
@@ -74,7 +82,6 @@
               </div>
             </nav>
           </div>
-
         </div>
       </header>
       <!-- end header section -->
@@ -123,11 +130,17 @@
       </div>
     </div>
   </section>
+    <!-- footer section -->
+    <footer class="container-fluid footer_section">
+    <p>
+      &copy; <span id="currentYear"></span> All Rights Reserved. Design by
+      <a href="https://html.design/">RSVP Planner</a>
+    </p>
+  </footer>
+  <!-- footer section -->
 
-  <!-- end plans section -->
+  <script src="../js/jquery-3.4.1.min.js"></script>
+  <script src="../js/bootstrap.js"></script>
+  <script src="../js/custom.js"></script>
   <?php
-}
-	else{
-        header("Location: ../login.html");
-	}
-    ?>
+

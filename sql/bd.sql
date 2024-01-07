@@ -63,7 +63,7 @@ CREATE TABLE `anfitrion` (
 
 INSERT INTO `anfitrion` (`id_anfitrion`, `nombre`, `apaterno`, `amaterno`, `email`, `password`) VALUES
 (1, 'Jair', 'Sánchez', 'Martínez', 'gearssix19@gmail.com', '12345'),
-(2, 'Elias', 'Pacheco', 'Ortega', 'a@afk.com', '54321');
+(2, 'Elias', 'Pacheco', 'Ortega', 'elias@gmail.com', '54321');
 
 -- --------------------------------------------------------
 
@@ -85,9 +85,10 @@ CREATE TABLE `eventos` (
 --
 
 INSERT INTO `eventos` (`id_evento`, `id_anfitrion`, `nombre_evento`, `fecha_evento`, `ubicacion`, `detalles`) VALUES
-(1, 1, 'asies', '2024-01-26', 'una casa', 'en un baldio xd'),
-(2, 1, 'casa2', '2024-01-26', 'narnia', 'no c'),
-(3, 2, 'pedilla', '2024-01-31', 'nezzzzzza', 'asdfafas');
+(1, 1, 'Fiesta1', '2024-01-26', 'CDMX', 'sin detalles'),
+(2, 1, 'Fiesta2', '2024-01-26', 'CDMX', 'sin detalles'),
+(3, 2, 'Evento1', '2024-01-31', 'CDMX', 'sin detalles'),
+(4, 3, 'Fiesta', '2024-01-26', 'CDMX', 'sin detalles');
 
 -- --------------------------------------------------------
 

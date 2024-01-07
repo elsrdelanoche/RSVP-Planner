@@ -60,7 +60,7 @@ if (isset($_SESSION['email'])) {
             <nav class="navbar navbar-expand-lg custom_nav-container">
               <a class="navbar-brand" href="../index.html">
                 <span>
-                  <img src="../images/logo_blanco.png" style="height: 37px;"> RSVP Planner - Anfitrión
+                  <img src="../images/logo_blanco.png" style="height: 37px;"> RSVP Planner
                 </span>
               </a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,7 +70,11 @@ if (isset($_SESSION['email'])) {
               <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
                 <!-- Left -->
                 <ul class="navbar-nav mr-5 mt-n3">
-                  
+                  <li class="nav-item">
+                  <a class="nav-link" href="#" target="_self">Menú Anfitrión
+                    <span class="sr-only">(current)</span>
+                  </a>
+                  </li>
                 </ul>
                 <!-- Right -->
                 <ul class="navbar-nav nav-flex-icons m-1">
@@ -89,71 +93,60 @@ if (isset($_SESSION['email'])) {
       <!-- end header section -->
     </div> 
     <main>
-    <div class="container mt-4">
-    <h3 class="text-dark">Bienvenido <?php echo $nombre ?></h3>
-    </div>
-    <div class="my-4">
-        <a href="/php/crear_evento.php" class="btn btn-primary">Crear Evento Nuevo</a>
-    </div>
-    <div class="table-responsive">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Nombre del Evento</th>
-                    <th>Fecha</th>
-                    <th>Ubicación</th>
-                    <th>Detalles</th>
-                    <!-- Añade más columnas según sea necesario -->
-                </tr>
-            </thead>
+    <h3 class="text-dark ml-4 mb-1 mt-4">Bienvenido <?php echo $nombre ?></h6>
+    <div class="container p-4 m-0">
+      <div class="mb-3">
+          <a href="crear_evento.php" class="btn btn-primary">Crear Evento Nuevo</a>
+      </div>
+      <div class="table-responsive">
+        <table id="dtHorizontalVerticalExample" class="table table-bordered table-sm">
+          <thead>
+            <tr style="font-size: 14px;">
+              <th>Nombre del Evento</th>
+              <th>Fecha</th>
+              <th>Ubicación</th>
+              <th>Detalles</th>
+              <th>Eliminar</th>
+              <th>Estadísticas</th>
+              <th>Invitados</th>
+              <th>Personalizar</th>
+              <!-- Añade más columnas según sea necesario -->
+            </tr>
+          </thead>
             
-                  <tbody id="tablaEventos">
-                    
-                      <?php
-                          $queryEvento = "SELECT * FROM eventos WHERE id_anfitrion = ?";
-                          $stmt = $conexion->prepare($queryEvento);
-                          $stmt->bind_param("i", $id_anfitrion); // 'i' significa que el parámetro es un entero
-                          $stmt->execute();
+          <tbody id="tablaEventos">
+            <?php
+              $queryEvento = "SELECT * FROM eventos WHERE id_anfitrion = ?";
+              $stmt = $conexion->prepare($queryEvento);
+              $stmt->bind_param("i", $id_anfitrion); // 'i' significa que el parámetro es un entero
+              $stmt->execute();
                           
-                          $resultEvento = $stmt->get_result(); // Obtener el resultado de la consulta preparada
-                          
-                          while($rowEvento = $resultEvento->fetch_assoc()) { ?>
-                              <tr style="font-size: 13px;">
-                                  <td class="pt-2"><?php echo htmlspecialchars($rowEvento['nombre_evento']); ?></td>
-                                  <td class="pt-2"><?php echo htmlspecialchars($rowEvento['fecha_evento']); ?></td>
-                                  <td class="pt-2"><?php echo htmlspecialchars($rowEvento['ubicacion']); ?></td>
-                                  <td class="pt-2"><?php echo htmlspecialchars($rowEvento['detalles']); ?></td>
-                                  <td>
-                                      <!-- Botón para eliminar -->
-                                      <a href="/php/eliminar_evento.php?id=<?php echo $rowEvento['id_evento']; ?>" class="btn btn-danger btn-sm">
-                                          Eliminar
-                                      </a>
-                                      <!-- Botón para ver estadísticas -->
-                                      <a href="/php/estadisticas_evento.php?id=<?php echo $rowEvento['id_evento']; ?>" class="btn btn-info btn-sm">
-                                          Estadísticas
-                                      </a>
-                                      <!-- Botón para enviar invitaciones -->
-                                      <a href="/php/invitar.php?id=<?php echo $rowEvento['id_evento']; ?>" class="btn btn-primary btn-sm">
-                                          Invitar
-                                      </a>
-                                      <!-- Botón para editar invitaciones -->
-                                      <a href="/php/personalizar.php?id=<?php echo $rowEvento['id_evento']; ?>" class="btn btn-primary btn-sm">
-                                          Personalizar
-                                      </a>
-                                  </td>
-                              </tr>
-                      <?php }?>
-                  </tbody>
-              </table>
-          </div>
-
-
-            </tbody>
+              $resultEvento = $stmt->get_result(); // Obtener el resultado de la consulta preparada
+              while($rowEvento = $resultEvento->fetch_assoc()) { ?>
+                <tr style="font-size: 13px;">
+                  <td class="pt-2"><?php echo htmlspecialchars($rowEvento['nombre_evento']); ?></td>
+                  <td class="pt-2"><?php echo htmlspecialchars($rowEvento['fecha_evento']); ?></td>
+                  <td class="pt-2"><?php echo htmlspecialchars($rowEvento['ubicacion']); ?></td>
+                  <td class="pt-2"><?php echo htmlspecialchars($rowEvento['detalles']); ?></td>
+                  <td class="text-center"><a href="eliminar_evento.php?id=<?php echo $rowEvento['id_evento']; ?>"  class="btn btn-danger btn-sm" name="">
+                    <i class="fa fa-trash" style="color: white;"></i></a>
+                  </td>
+                  <td class="text-center"><a href="estadisticas_evento.php?id=<?php echo $rowEvento['id_evento']; ?>"  class="btn btn-warning btn-sm" name="">
+                    <i class="fa fa-pencil" style="color: white;"></i></a>
+                  </td>
+                  <td class="text-center"><a href="invitar.php?id=<?php echo $rowEvento['id_evento']; ?>"  class="btn btn-primary btn-sm" name="">
+                    <i class="fa fa-pencil" style="color: white;"></i></a>
+                  </td>
+                  <td class="text-center"><a href="personalizar.php?id=<?php echo $rowEvento['id_evento']; ?>"  class="btn btn-info btn-sm" name="">
+                    <i class="fa fa-pencil" style="color: white;"></i></a>
+                  </td>
+                </tr>
+              <?php }?>
+          </tbody>
         </table>
+      </div>
     </div>
-</div> 
-    </div>
-    </main>
+  </main>
   <!-- footer section -->
   <footer class="container-fluid footer_section">
     <p>
