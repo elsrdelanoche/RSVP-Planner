@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Respuesta</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: black;
+      font-family: 'Arial', sans-serif;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    #confeti-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .confeti {
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      background-color: #f00; /* Puedes cambiar el color */
+      border-radius: 50%;
+      opacity: 0;
+      animation: confetiAnimation linear infinite;
+    }
+
+    @keyframes confetiAnimation {
+      0% {
+        transform: translateY(-50vh) rotate(0deg);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(150vh) rotate(360deg);
+        opacity: 1;
+      }
+    }
+
+    #text-container {
+      opacity: 0;
+      animation: textAnimation 2s ease-out forwards;
+    }
+
+    @keyframes textAnimation {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    h1 {
+      font-size: 3em; /* Tamaño del texto */
+      margin-bottom: 20px;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: typeText 4s steps(40, end);
+    }
+
+    @media screen and (max-width: 600px) {
+      .confeti {
+        width: 10px;
+        height: 10px;
+      }
+
+      h1 {
+        font-size: 2em;
+      }
+    }
+    @keyframes typeText {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+  </style>
+</head>
+<body>
+    
+<div id="confeti-container"></div>
+
+<div id="text-container">
+  <h1>  Gracias por tu confirmación,<br> nos vemos pronto!...  </h1>
+  <img src="images/logo_blanco.png" style="height: 150px;">
+</div>
+
+<script>
+  function createConfeti() {
+    const confetiContainer = document.getElementById('confeti-container');
+    const colors = ['#f00', '#0f0', '#00f', '#ff0', '#f0f', '#0ff'];
+
+    for (let i = 0; i < 100; i++) {
+      const confeti = document.createElement('div');
+      confeti.className = 'confeti';
+      confeti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      confeti.style.left = `${Math.random() * window.innerWidth}px`;
+      confeti.style.animationDuration = `${Math.random() * 6 + 4}s`; // Ajusta la velocidad de caída
+      confetiContainer.appendChild(confeti);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    createConfeti();
+    setTimeout(() => {
+      document.getElementById('text-container').style.opacity = 1;
+    }, 2000); // Delay text animation for 2 seconds
+  });
+</script>
+
+</body>
+</html>
