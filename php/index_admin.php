@@ -157,17 +157,17 @@
                             
                             while($row = mysqli_fetch_assoc($result)){ ?>
                                 <tr style="font-size: 13px;">
-                                    <td class="pt-2"><?php echo $row['folio'] ?></td>
+                                    <td class="pt-2"><?php echo $row['id_anfitrion'] ?></td>
                                     <td class="pt-2"><?php echo $row['nombre'] ?></td>
                                     <td class="pt-2"><?php echo $row['apaterno'] ?></td>
                                     <td class="pt-2"><?php echo $row['amaterno'] ?></td>
                                     <td class="pt-2"><?php echo $row['email'] ?></td>
                                     <td class="pt-2"><?php echo $row['password'] ?></td>
-                                    <td class="text-center"><a href="editar_anf.php?folio=<?php echo $row['folio'] ?>"  class="btn btn-info btn-sm" name="">
+                                    <td class="text-center"><a href="editar_anf.php?id_anfitrion=<?php echo $row['id_anfitrion'] ?>"  class="btn btn-info btn-sm" name="">
                                         <i class="fa fa-pencil" style="color: white;"></i>
                                         </a>
                                     </td>
-                                    <td class="text-center"><a href="eliminar_anf.php?folio=<?php echo $row['folio'] ?>"  class="btn btn-danger btn-sm" name="">
+                                    <td class="text-center"><a href="eliminar_anf.php?id_anfitrion=<?php echo $row['id_anfitrion'] ?>"  class="btn btn-danger btn-sm" name="">
                                         <i class="fa fa-trash" style="color: white;"></i>
                                         </a>
                                     </td>

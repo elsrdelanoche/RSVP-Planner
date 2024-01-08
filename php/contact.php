@@ -19,7 +19,7 @@
             <div style="margin-left: 5%;">
             <p>Nombre: <span style="font-weight: bold;">'.htmlspecialchars($nombre).'</span></p>
             <p>Correo electrónico: '.htmlspecialchars($email).'</p>
-            <p>Asunto: '.htmlspecialchars($asunto).'</p>
+            <p>Asunto: '.nl2br(htmlspecialchars($asunto)).'</p>
             <p>Mensaje:</p>
             <p style="margin-left: 8%;">'.nl2br(htmlspecialchars($mensaje)).'</p>
             </div>

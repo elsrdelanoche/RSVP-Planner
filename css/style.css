@@ -613,6 +613,13 @@ a:focus {
   right: 0;
 }
 
+#areaDeEdicion {
+  border: 1px solid black;
+  width: 700px;
+  height: 500px;
+  position: relative;
+}
+
 /* contact section */
 .contact_section {
   position: relative;
