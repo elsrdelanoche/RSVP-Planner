@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-01-2024 a las 13:44:13
+-- Tiempo de generación: 09-01-2024 a las 10:03:13
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -87,8 +87,7 @@ CREATE TABLE `eventos` (
 INSERT INTO `eventos` (`id_evento`, `id_anfitrion`, `nombre_evento`, `fecha_evento`, `ubicacion`, `detalles`) VALUES
 (1, 1, 'Fiesta1', '2024-01-26', 'CDMX', 'sin detalles'),
 (2, 1, 'Fiesta2', '2024-01-26', 'CDMX', 'sin detalles'),
-(3, 2, 'Evento1', '2024-01-31', 'CDMX', 'sin detalles'),
-(4, 3, 'Fiesta', '2024-01-26', 'CDMX', 'sin detalles');
+(3, 2, 'Evento1', '2024-01-31', 'CDMX', 'sin detalles');
 
 -- --------------------------------------------------------
 
@@ -190,7 +189,7 @@ ALTER TABLE `anfitrion`
 -- AUTO_INCREMENT de la tabla `eventos`
 --
 ALTER TABLE `eventos`
-  MODIFY `id_evento` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_evento` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `invitaciones`
@@ -230,8 +229,8 @@ ALTER TABLE `invitaciones`
 -- Filtros para la tabla `invitados_eventos`
 --
 ALTER TABLE `invitados_eventos`
-  ADD CONSTRAINT `invitados_eventos_ibfk_1` FOREIGN KEY (`id_evento`) REFERENCES `eventos` (`id_evento`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `invitados_eventos_ibfk_2` FOREIGN KEY (`id_invitado`) REFERENCES `invitado` (`id_invitado`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `invitados_eventos_ibfk_1` FOREIGN KEY (`id_invitado`) REFERENCES `invitado` (`id_invitado`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `invitados_eventos_ibfk_2` FOREIGN KEY (`id_evento`) REFERENCES `eventos` (`id_evento`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
