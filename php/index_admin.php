@@ -108,6 +108,15 @@
     <div class="container p-4 m-0">
         <div class="row">
             <div class="col-lg-4 col-md-6">
+                <?php if (isset($_SESSION['message'])) { ?>
+                    <div class="alert alert-<?= $_SESSION['type'];?> alert-dismissible fade show mb-3" role="alert" style="font-size: 14px;">
+                        <?= $_SESSION['message']?>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <?php unset($_SESSION['message']); 
+                        unset($_SESSION['type']); } ?>
                 <div class="card card-body m-0">
                     <form action="crear_anf.php" method="post" class="registration_form">
                         <div class="form-group">
@@ -126,15 +135,6 @@
                         </div>
                     </form>
                 </div>
-                <?php if (isset($_SESSION['message'])) { ?>
-                <div class="alert alert-<?= $_SESSION['type'];?> alert-dismissible fade show mt-3 mb-n2" role="alert" style="font-size: 14px;">
-                    <?= $_SESSION['message']?>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <?php unset($_SESSION['message']); 
-                    unset($_SESSION['type']); } ?>
             </div>
             <div class="col-lg-8 col-md-6">
                 <table id="dtHorizontalVerticalExample" class="table table-bordered table-sm">

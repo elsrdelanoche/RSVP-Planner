@@ -93,85 +93,80 @@ if (isset($_SESSION['email'])) {
     </div> 
 
     <main>
-    <h3 class="text-dark ml-4 mb-1 mt-4">Invitados</h6>
-    <h5 class="text-center mt-5">Nuevo invitado</h5>
-    <div class="row m-0">
-      <div class="col-lg-4 col-md-3"></div>
-        <div class="col-lg-4 col-md-6 mt-4 mb-5">
-          <div class="card card-body mb-5">
-            <form action="procesar_evento.php" method="post" class="registration_form">
-              <div class="form-group">
-                  <label for="nombreinv">Nombre:</label>
-                  <input type="text" class="form-control" id="nombreinv" name="nombreinv" required>
-              </div>
-              <div class="form-group">
-                  <label for="apaterno">Apellido Paterno:</label>
-                  <input type="text" class="form-control" id="apaterno" name="apaterno" required>
-              </div>
-              <div class="form-group">
-                  <label for="amaterno">Apellido Materno:</label>
-                  <input type="text" class="form-control" id="amaterno" name="amaterno" required>
-              </div>
-              <div class="form-group">
-                  <label for="emailinvitado">Email:</label>
-                  <input type="email" class="form-control" id="emailinvitado" name="emailinvitado" required>
-              </div>
-              <div class="text-center">
-                <a href="/php/index_anf.php" class="btn btn-primary">Invitar </a>
-              </div>
-              
-            </form>
-          </div>
+    <h5 class="text-center mt-5">Agregar Nuevo Invitado</h5>
+    <div class="container p-4 m-0">
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <?php if (isset($_SESSION['message'])) { ?>
+                    <div class="alert alert-<?= $_SESSION['type'];?> alert-dismissible fade show mb-3" role="alert" style="font-size: 14px;">
+                        <?= $_SESSION['message']?>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <?php unset($_SESSION['message']); 
+                        unset($_SESSION['type']); } ?>
+                <div class="card card-body m-0">
+                    <form action="crear_inv.php?id_evento=<?php echo $_GET['id_evento'];?>" method="post" class="registration_form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" style="font-size: 14px;" name="nombre" id="nombre" placeholder="Nombre(s)" required>
+                            <input type="text" class="form-control mt-3" style="font-size: 14px;" name="apaterno" id="apaterno" placeholder="Apellido Paterno" required>
+                            <input type="text" class="form-control mt-3" style="font-size: 14px;" name="amaterno" id="amaterno" placeholder="Apellido Materno" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" style="font-size: 14px;" name="email" id="email" placeholder="Correo Electrónico" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" style="font-size: 14px;" name="password" id="password" placeholder="Contraseña" required>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" name="crear" id="crear" style="font-size: 14px;" class="btn btn-success btn-block">Agregar Invitado</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-6">
+                <table id="dtHorizontalVerticalExample" class="table table-bordered table-sm">
+                    <thead>
+                        <tr style="font-size: 14px;">
+                            <th>Nombre(s)</th>
+                            <th>Apellido Paterno</th>
+                            <th>Apellido Materno</th>
+                            <th>Correo</th>
+                            <th>Contraseña</th>
+                            <th>Estado</th>
+                            <th>Eliminar</th>
+                            <th>Invitar</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla">
+                        <?php
+                            $query = "SELECT * FROM invitado";
+                            $result = mysqli_query($conexion, $query);
+                            
+                            while($row = mysqli_fetch_assoc($result)){ ?>
+                                <tr style="font-size: 13px;">
+                                    <td class="pt-2"><?php echo $row['nombre'] ?></td>
+                                    <td class="pt-2"><?php echo $row['apaterno'] ?></td>
+                                    <td class="pt-2"><?php echo $row['amaterno'] ?></td>
+                                    <td class="pt-2"><?php echo $row['email'] ?></td>
+                                    <td class="pt-2"><?php echo $row['password'] ?></td>
+                                    <td class="pt-2"><?php echo $row['estado'] ?></td>
+                                    <td class="text-center"><a href="eliminar_inv.php?id_invitado=<?php echo $row['id_invitado']?>&id_evento=<?php echo $_GET['id_evento'];?>"  class="btn btn-danger btn-sm" name="">
+                                        <i class="fa fa-trash" style="color: white;"></i>
+                                        </a>
+                                    </td>
+                                    <td class="text-center"><a href="invitar.php?id_invitado=<?php echo $row['id_invitado'] ?>"  class="btn btn-info btn-sm" name="">
+                                        <i class="fa fa-paper-plane" style="color: white;"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php }?>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="col-lg-4 col-md-3"></div>
-      </div> 
-
-      <div class="table-responsive">
-        <table id="dtHorizontalVerticalExample" class="table table-bordered table-sm">
-          <thead>
-            <tr style="font-size: 14px;">
-              <th>Nombre del Invitado</th>
-              <th>Email</th>
-              <th>Contraseña</th>
-              <!-- Añade más columnas según sea necesario -->
-            </tr>
-          </thead>
-            
-          <tbody id="tablaEventos">
-            
-            <?php
-              /*
-              $queryEvento = "SELECT * FROM eventos WHERE id_anfitrion = ?";
-              $stmt = $conexion->prepare($queryEvento);
-              $stmt->bind_param("i", $id_anfitrion); // 'i' significa que el parámetro es un entero
-              $stmt->execute();
-                          
-              $resultEvento = $stmt->get_result(); // Obtener el resultado de la consulta preparada
-              while($rowEvento = $resultEvento->fetch_assoc()) { ?>
-                <tr style="font-size: 13px;">
-                  <td class="pt-2"><?php echo htmlspecialchars($rowEvento['nombre_evento']); ?></td>
-                  <td class="pt-2"><?php echo htmlspecialchars($rowEvento['fecha_evento']); ?></td>
-                  <td class="pt-2"><?php echo htmlspecialchars($rowEvento['ubicacion']); ?></td>
-                  <td class="pt-2"><?php echo htmlspecialchars($rowEvento['detalles']); ?></td>
-                  <td class="text-center"><a href="eliminar_evento.php?id=<?php echo $rowEvento['id_evento']; ?>"  class="btn btn-danger btn-sm" name="">
-                    <i class="fa fa-trash" style="color: white;"></i></a>
-                  </td>
-                  <td class="text-center"><a href="estadisticas_evento.php?id=<?php echo $rowEvento['id_evento']; ?>"  class="btn btn-warning btn-sm" name="">
-                    <i class="fa fa-pencil" style="color: white;"></i></a>
-                  </td>
-                  <td class="text-center"><a href="invitar.php?id=<?php echo $rowEvento['id_evento']; ?>"  class="btn btn-primary btn-sm" name="">
-                    <i class="fa fa-pencil" style="color: white;"></i></a>
-                  </td>
-                  <td class="text-center"><a href="personalizar.php?id=<?php echo $rowEvento['id_evento']; ?>"  class="btn btn-info btn-sm" name="">
-                    <i class="fa fa-pencil" style="color: white;"></i></a>
-                  </td>
-                </tr>
-              <?php }
-
-              */?>
-          </tbody>
-        </table>
-      </div>
+    </div>
     </main>
 
   <!-- footer section -->
@@ -186,4 +181,5 @@ if (isset($_SESSION['email'])) {
   <script src="../js/jquery-3.4.1.min.js"></script>
   <script src="../js/bootstrap.js"></script>
   <script src="../js/custom.js"></script>
+  <script type="text/javascript" src="../js/mdb.min.js"></script>
   <?php

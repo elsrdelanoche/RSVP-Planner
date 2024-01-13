@@ -17,9 +17,16 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
---
--- Base de datos: `rsvp_planner`
---
+-- -----------------------------------------------------
+-- Schema rsvp_planner
+-- -----------------------------------------------------
+DROP SCHEMA IF EXISTS rsvp_planner;
+
+-- -----------------------------------------------------
+-- Schema rsvp_planner
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS rsvp_planner DEFAULT CHARACTER SET utf8 ;
+USE rsvp_planner ;
 
 -- --------------------------------------------------------
 
@@ -63,7 +70,7 @@ CREATE TABLE `anfitrion` (
 
 INSERT INTO `anfitrion` (`id_anfitrion`, `nombre`, `apaterno`, `amaterno`, `email`, `password`) VALUES
 (1, 'Jair', 'Sánchez', 'Martínez', 'gearssix19@gmail.com', '12345'),
-(2, 'Elias', 'Pacheco', 'Ortega', 'elias@gmail.com', '54321');
+(2, 'Ana', 'Medina', 'Angeles', 'ana.medina.angeles@gmail.com', 'ana12');
 
 -- --------------------------------------------------------
 
@@ -92,30 +99,18 @@ INSERT INTO `eventos` (`id_evento`, `id_anfitrion`, `nombre_evento`, `fecha_even
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `invitaciones`
---
-
-CREATE TABLE `invitaciones` (
-  `id_invitacion` int(10) NOT NULL,
-  `id_evento` int(10) NOT NULL,
-  `diseno` int(10) NOT NULL,
-  `mensaje` varchar(40) NOT NULL,
-  `formato_pdf` varchar(40) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `invitado`
 --
 
 CREATE TABLE `invitado` (
   `id_invitado` int(10) NOT NULL,
+  `id_evento` int(10) NOT NULL,
   `nombre` varchar(45) NOT NULL,
   `apaterno` varchar(45) NOT NULL,
   `amaterno` varchar(45) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `password` varchar(50) NOT NULL
+  `password` varchar(50) NOT NULL,
+  `estado` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
@@ -155,25 +150,10 @@ ALTER TABLE `eventos`
   ADD KEY `id_anfitrion` (`id_anfitrion`);
 
 --
--- Indices de la tabla `invitaciones`
---
-ALTER TABLE `invitaciones`
-  ADD PRIMARY KEY (`id_invitacion`),
-  ADD KEY `id_evento` (`id_evento`);
-
---
 -- Indices de la tabla `invitado`
 --
 ALTER TABLE `invitado`
   ADD PRIMARY KEY (`id_invitado`);
-
---
--- Indices de la tabla `invitados_eventos`
---
-ALTER TABLE `invitados_eventos`
-  ADD PRIMARY KEY (`id_invitado_evento`),
-  ADD KEY `id_evento` (`id_evento`),
-  ADD KEY `id_invitado` (`id_invitado`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -192,22 +172,10 @@ ALTER TABLE `eventos`
   MODIFY `id_evento` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT de la tabla `invitaciones`
---
-ALTER TABLE `invitaciones`
-  MODIFY `id_invitacion` int(10) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `invitado`
 --
 ALTER TABLE `invitado`
   MODIFY `id_invitado` int(10) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `invitados_eventos`
---
-ALTER TABLE `invitados_eventos`
-  MODIFY `id_invitado_evento` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
@@ -218,19 +186,8 @@ ALTER TABLE `invitados_eventos`
 --
 ALTER TABLE `eventos`
   ADD CONSTRAINT `eventos_ibfk_1` FOREIGN KEY (`id_anfitrion`) REFERENCES `anfitrion` (`id_anfitrion`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `invitaciones`
---
-ALTER TABLE `invitaciones`
-  ADD CONSTRAINT `invitaciones_ibfk_1` FOREIGN KEY (`id_evento`) REFERENCES `eventos` (`id_evento`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `invitados_eventos`
---
-ALTER TABLE `invitados_eventos`
-  ADD CONSTRAINT `invitados_eventos_ibfk_1` FOREIGN KEY (`id_invitado`) REFERENCES `invitado` (`id_invitado`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `invitados_eventos_ibfk_2` FOREIGN KEY (`id_evento`) REFERENCES `eventos` (`id_evento`) ON UPDATE CASCADE;
+ALTER TABLE `invitado`
+  ADD CONSTRAINT `invitado_ibfk_1` FOREIGN KEY (`id_evento`) REFERENCES `eventos` (`id_evento`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

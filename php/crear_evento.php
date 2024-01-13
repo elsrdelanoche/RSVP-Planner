@@ -1,12 +1,21 @@
 <?php 
   include("db.php");
-  session_start();
-	if(isset($_SESSION["email"])){
-		$nombre = $_SESSION["nombre"];
-	}
-	else{
-        header("Location: ../login.html");
-	}
+
+  if (isset($_POST['crear'])) {
+    $evento = $_POST['evento'];
+    $fecha = $_POST['fecha'];
+    $ubicacion = $_POST['ubicacion'];
+    $detalles = $_POST['detalles'];
+    $id_anfitrion = $_GET['id_anfitrion'];
+
+    $query = "INSERT INTO eventos VALUES (NULL, $id_anfitrion, '$evento', '$fecha', '$ubicacion', '$detalles')";
+    $result = mysqli_query($conexion, $query);
+    if (!$result) {
+      die("Query fail");
+      header("Location: ../index.html");
+    }
+    header("Location: index_anf.php");
+  }
 ?>
 
 <!DOCTYPE html>
@@ -92,25 +101,25 @@
       <div class="col-lg-4 col-md-3"></div>
         <div class="col-lg-4 col-md-6 mt-4 mb-5">
           <div class="card card-body mb-5">
-            <form action="procesar_evento.php" method="post" class="registration_form">
+            <form action="crear_evento.php?id_anfitrion=<?php echo $_GET['id_anfitrion'];?>" method="post" class="registration_form">
               <div class="form-group">
-                  <label for="nombreEvento">Nombre del Evento:</label>
-                  <input type="text" class="form-control" id="nombreEvento" name="nombreEvento" required>
+                  <label for="evento">Nombre del Evento:</label>
+                  <input type="text" class="form-control" id="evento" name="evento" required>
               </div>
               <div class="form-group">
-                  <label for="fechaEvento">Fecha:</label>
-                  <input type="date" class="form-control" id="fechaEvento" name="fechaEvento" required>
+                  <label for="fecha">Fecha:</label>
+                  <input type="date" class="form-control" id="fecha" name="fecha" required>
               </div>
               <div class="form-group">
-                  <label for="ubicacionEvento">Ubicación:</label>
-                  <input type="text" class="form-control" id="ubicacionEvento" name="ubicacionEvento" required>
+                  <label for="ubicacion">Ubicación:</label>
+                  <input type="text" class="form-control" id="ubicacion" name="ubicacion" required>
               </div>
               <div class="form-group">
-                  <label for="detallesEvento">Detalles:</label>
-                  <textarea class="form-control" id="detallesEvento" name="detallesEvento" rows="3"></textarea>
+                  <label for="detalles">Detalles:</label>
+                  <textarea class="form-control" id="detalles" name="detalles" rows="3"></textarea>
               </div>
               <div class="text-center">
-                <a href="/php/index_anf.php" class="btn btn-primary">Crear Evento </a>
+                <button type="submit" name="crear" id="crear" style="font-size: 14px;" class="btn btn-success btn-block">Crear Evento</button>
               </div>
             </form>
           </div>

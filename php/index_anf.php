@@ -96,7 +96,7 @@ if (isset($_SESSION['email'])) {
     <h3 class="text-dark ml-4 mb-1 mt-4">Bienvenido <?php echo $nombre ?></h6>
     <div class="container p-4 m-0">
       <div class="mb-3">
-          <a href="crear_evento.php" class="btn btn-primary">Crear Evento Nuevo</a>
+          <a href="crear_evento.php?id_anfitrion=<?php echo $fila['id_anfitrion']; ?>" class="btn btn-primary">Crear Evento Nuevo</a>
       </div>
       <div class="table-responsive">
         <table id="dtHorizontalVerticalExample" class="table table-bordered table-sm">
@@ -128,16 +128,16 @@ if (isset($_SESSION['email'])) {
                   <td class="pt-2"><?php echo htmlspecialchars($rowEvento['fecha_evento']); ?></td>
                   <td class="pt-2"><?php echo htmlspecialchars($rowEvento['ubicacion']); ?></td>
                   <td class="pt-2"><?php echo htmlspecialchars($rowEvento['detalles']); ?></td>
-                  <td class="text-center"><a href="eliminar_evento.php?id=<?php echo $rowEvento['id_evento']; ?>"  class="btn btn-danger btn-sm" name="">
+                  <td class="text-center"><a href="eliminar_evento.php?id_evento=<?php echo $rowEvento['id_evento']; ?>"  class="btn btn-danger btn-sm" name="">
                     <i class="fa fa-trash" style="color: white;"></i></a>
                   </td>
-                  <td class="text-center"><a href="estadisticas_evento.php?id=<?php echo $rowEvento['id_evento']; ?>"  class="btn btn-warning btn-sm" name="">
+                  <td class="text-center"><a href="estadisticas_evento.php?id_evento=<?php echo $rowEvento['id_evento']; ?>"  class="btn btn-warning btn-sm" name="">
                     <i class="fa fa-pencil" style="color: white;"></i></a>
                   </td>
-                  <td class="text-center"><a href="invitar.php?id=<?php echo $rowEvento['id_evento']; ?>"  class="btn btn-primary btn-sm" name="">
+                  <td class="text-center"><a href="invitar.php?id_evento=<?php echo $rowEvento['id_evento']; ?>"  class="btn btn-info btn-sm" name="">
                     <i class="fa fa-pencil" style="color: white;"></i></a>
                   </td>
-                  <td class="text-center"><a href="personalizar.php?id=<?php echo $rowEvento['id_evento']; ?>"  class="btn btn-info btn-sm" name="">
+                  <td class="text-center"><a href="personalizar.php?id_evento=<?php echo $rowEvento['id_evento']; ?>"  class="btn btn-success btn-sm" name="">
                     <i class="fa fa-pencil" style="color: white;"></i></a>
                   </td>
                 </tr>

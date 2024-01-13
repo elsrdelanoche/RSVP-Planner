@@ -124,16 +124,20 @@
   <!-- login section -->
   <section class="team_section layout_padding mb-3">
     <div class="container" id="services">
-        <div class="heading_container heading_center mb-4">
-          <h2 class="mt-3 mb-5">
-            Bienvenido <?php echo $_POST['nombre'] ?>
+        <div class="heading_container heading_center mb-4 ml-5 mr-5">
+          <h2 class="mt-3 mb-5 ml-5 mr-5">
+          ¡Hola! Bienvenido <?php echo $_POST['nombre'] ?>
           </h2>
-          <h6>
-            Tus datos han sido registrados exitosamente.
+          <h5>
+          Tu registro en RSVP Planner ha sido completado con éxito. <br>
+          Hemos enviado un correo a <?php echo $_POST['email'] ?> con todos los detalles que necesitas para comenzar.
+          </h5>
+          <h6 class="mt-5 mb-3 ml-5 mr-5">
+          Estamos emocionados de tenerte con nosotros. ¿Estás listo?
           </h6>
         </div>
         <div class="text-center">
-          <a class="btn btn-dark mt-5 mb-3 pl-5 pr-5" href="../login.html" target="_self" role="button">Iniciar Sesión
+          <a class="btn btn-dark mb-3 pl-5 pr-5" href="../login.html" target="_self" role="button">Iniciar Sesión
           <i class="fa fa-chevron-right ml-2"></i>
           </a>
         </div>

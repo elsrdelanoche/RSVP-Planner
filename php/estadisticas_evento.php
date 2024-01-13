@@ -71,7 +71,7 @@ if (isset($_SESSION['email'])) {
                 <!-- Left -->
                 <ul class="navbar-nav mr-5 mt-n3">
                   <li class="nav-item">
-                  <a class="nav-link" href="#" target="_self">Menú Anfitrión
+                  <a class="nav-link" href="index_anf.php" target="_self">Menú Anfitrión
                     <span class="sr-only">(current)</span>
                   </a>
                   </li>
